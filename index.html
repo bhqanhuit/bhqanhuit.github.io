@@ -57,7 +57,9 @@
 
         <div style="display:flex;justify-content:flex-end;gap:12px" class="no-print">
           <button onClick="{{ toggleTheme }}" aria-label="Toggle colour theme" style="width:34px;height:34px;border:1px solid var(--line);background:transparent;border-radius:3px;cursor:pointer;color:var(--ink2);font-size:14px;transition:border-color .18s,background .18s" style-hover="border-color:var(--accent);background:var(--accent-soft)">{{ themeIcon }}</button>
-          <a href="#" style="font-size:13px;font-weight:600;color:var(--on-accent);background:var(--accent);padding:9px 15px;border-radius:3px;text-decoration:none">Download CV</a>
+          <sc-if value="{{ hasCv }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ cvHref }}" style="font-size:13px;font-weight:600;color:var(--on-accent);background:var(--accent);padding:9px 15px;border-radius:3px;text-decoration:none">Download Vitae</a>
+          </sc-if>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:start">
@@ -70,7 +72,8 @@
               <a href="https://scholar.google.com/citations?user=V5y9YfIAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="text-decoration:none">Scholar</a><span>/</span>
               <a href="https://github.com/bhqanhuit" target="_blank" rel="noopener" style="text-decoration:none">GitHub</a><span>/</span>
               <a href="https://www.linkedin.com/in/quocanhad123/" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span>/</span>
-              <a href="#" style="text-decoration:none">CV</a>
+              <sc-if value="{{ hasCv }}" hint-placeholder-val="{{ true }}"><a href="{{ cvHref }}" style="text-decoration:none">Vitae</a></sc-if>
+              <sc-if value="{{ noCv }}" hint-placeholder-val="{{ false }}"><span title="Coming soon" style="opacity:.5">Vitae</span></sc-if>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
@@ -221,7 +224,14 @@ class Component extends DCLogic {
           noTitleLink: !firstReal
         };
       });
+    // Set CV_URL to a file path ("vitae.pdf") or a link to switch both CV
+    // affordances on. While it is empty the header button is hidden and the
+    // contact-row entry renders dimmed.
+    const CV_URL = "";
     return {
+      cvHref: CV_URL,
+      hasCv: !!CV_URL,
+      noCv: !CV_URL,
       theme: this.state.theme,
       initials: this.props.initials || "QA",
       showFigures: this.props.showFigures !== false,

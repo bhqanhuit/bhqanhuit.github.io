@@ -19,7 +19,7 @@ security and reliability of deployed AI systems.
 
 | Path | Purpose |
 | --- | --- |
-| `Academic Portfolio.dc.html` | The portfolio page — template plus its logic |
+| `index.html` | The portfolio page — template plus its logic |
 | `support.js` | Rendering runtime (generated; not edited by hand) |
 | `uploads/` | Publication teaser figures |
 | `portrait-circle.png` | Profile photo |
@@ -33,7 +33,7 @@ opening the file directly:
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/Academic%20Portfolio.dc.html>.
+Then open <http://localhost:8000/>.
 
 ## How it is built
 
