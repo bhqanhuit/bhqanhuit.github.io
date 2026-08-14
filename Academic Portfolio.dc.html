@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>[Full Name] — Academic Portfolio Design</title>
+<meta name="description" content="Personal research portfolio for [Full Name], [role] at [Institution], working on [research topic].">
+<meta property="og:title" content="[Full Name] — [Research Field]">
+<meta property="og:description" content="Research, publications and projects of [Full Name], [role] at [Institution].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,400&family=Public+Sans:ital,wght@0,300..700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF9; --surface:#FFFFFF; --surface2:#F4F2ED;
+    --ink:#1C201D; --ink2:#3E453F; --muted:#6B7269; --line:#E3E0D8;
+    --accent:#1E3A66; --accent-ink:#122A4E; --accent-soft:#E9EEF6; --on-accent:#FFFFFF;
+    --c-research:#1E3A66; --c-eng:#0E5A50; --c-personal:#8A4A24;
+    --bg-research:#E9EEF6; --bg-eng:#E4F0EC; --bg-personal:#F6EDE4;
+    --serif:"Source Serif 4",Georgia,serif; --sans:"Public Sans",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+  }
+  [data-theme="dark"]{
+    --bg:#101418; --surface:#181D23; --surface2:#20262E;
+    --ink:#E9EDF1; --ink2:#C7CDD5; --muted:#98A0AA; --line:#2A313A;
+    --accent:#93B7E6; --accent-ink:#C2D8F2; --accent-soft:#1B2536; --on-accent:#101418;
+    --c-research:#93B7E6; --c-eng:#7FCEC2; --c-personal:#E0A579;
+    --bg-research:#1B2536; --bg-eng:#152A26; --bg-personal:#2E2116;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+  ::selection{background:#D2E1F5;color:#10203A}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes drawline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media print{.no-print{display:none!important}}
+</style>
+</helmet>
+
+<div data-theme="{{ theme }}" style="padding:0;display:flex;flex-direction:column;background:var(--bg);min-height:100vh">
+
+  <section style="display:flex;justify-content:center">
+
+    <div id="top" data-screen-label="Single column home" style="width:100%;max-width:1000px;background:var(--bg);color:var(--ink);padding:64px 48px 72px">
+      <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+
+        <div style="display:flex;justify-content:flex-end;gap:12px" class="no-print">
+          <button onClick="{{ toggleTheme }}" aria-label="Toggle colour theme" style="width:34px;height:34px;border:1px solid var(--line);background:transparent;border-radius:3px;cursor:pointer;color:var(--ink2);font-size:14px;transition:border-color .18s,background .18s" style-hover="border-color:var(--accent);background:var(--accent-soft)">{{ themeIcon }}</button>
+          <a href="#" style="font-size:13px;font-weight:600;color:var(--on-accent);background:var(--accent);padding:9px 15px;border-radius:3px;text-decoration:none">Download CV</a>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <h1 style="font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.05;letter-spacing:-.025em;margin:0">Bui Huynh Quoc Anh</h1>
+            <p style="margin:0;font-size:17px;line-height:1.8;color:var(--ink2);text-wrap:pretty">I am an undergraduate student at the <a href="#">University of Information Technology, VNU-HCM (UIT)</a> and a visiting research student at <a href="#">Temasek Laboratories @ SUTD</a>, where I work with Assoc. Prof. Ngai-Man Cheung. Previously, I joined MMLAB under the supervision of Dr. Thanh Duc Ngo.</p>
+            <p style="margin:6px 0 0;font-family:var(--serif);font-size:18px;line-height:1.7;color:var(--ink);text-wrap:pretty;background:var(--accent-soft);border-left:2px solid var(--accent);border-radius:0 3px 3px 0;padding:16px 20px">My current research interests center on <strong style="font-weight:600">AI security</strong> and <strong style="font-weight:600">trustworthy machine learning</strong>, particularly the <em>security and reliability of deployed AI systems</em>.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:15px;color:var(--muted)">
+              <a href="mailto:huynh_bui@sutd.edu.sg" style="text-decoration:none">Email</a><span>/</span>
+              <a href="https://scholar.google.com/citations?user=V5y9YfIAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="text-decoration:none">Scholar</a><span>/</span>
+              <a href="https://github.com/bhqanhuit" target="_blank" rel="noopener" style="text-decoration:none">GitHub</a><span>/</span>
+              <a href="https://www.linkedin.com/in/quocanhad123/" target="_blank" rel="noopener" style="text-decoration:none">LinkedIn</a><span>/</span>
+              <a href="#" style="text-decoration:none">CV</a>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+            <img src="portrait-circle.png" alt="Portrait of Bui Huynh Quoc Anh" style="width:200px;height:200px;border-radius:50%;border:1px solid var(--line);object-fit:cover;display:block">
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;padding-top:6px" class="no-print">
+              <a href="#publications" style="display:block;text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.02em;color:var(--on-accent);background:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:10px 12px;text-decoration:none;box-shadow:0 1px 3px rgba(30,58,102,.25);transition:opacity .18s,transform .12s" style-hover="opacity:.88;transform:translateY(-1px)">Publications</a>
+              <a href="#skills" style="display:block;text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.02em;color:var(--on-accent);background:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:10px 12px;text-decoration:none;box-shadow:0 1px 3px rgba(30,58,102,.25);transition:opacity .18s,transform .12s" style-hover="opacity:.88;transform:translateY(-1px)">Key Technical Skills</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <h2 style="font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px">News</h2>
+          <sc-for list="{{ news }}" as="n" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:120px 1fr;gap:20px;padding:7px 0;align-items:start">
+              <span style="font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px">{{ n.date }}</span>
+              <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink2)">{{ n.text }}{{ n.pre }}<sc-if value="{{ n.title }}" hint-placeholder-val="{{ false }}"><a href="{{ n.href }}" style="font-weight:600">{{ n.title }}</a></sc-if>{{ n.post }}</p>
+            </div>
+          </sc-for>
+          <button onClick="{{ toggleNews }}" aria-expanded="{{ newsOpen }}" class="no-print" style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--accent);background:none;border:none;padding:6px 0 0;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px">{{ newsMoreLabel }}</button>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <h2 style="font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px" id="publications">Publications</h2>
+          <sc-for list="{{ barronPubs }}" as="p" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:160px 1fr;gap:22px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start">
+              <div style="aspect-ratio:16/10;border:1px solid var(--line);background:#FFFFFF;border-radius:3px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+                <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}">
+                  <div role="img" aria-label="{{ p.title }} teaser figure" style="{{ p.thumbStyle }}"></div>
+                </sc-if>
+                <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}">
+                  <svg viewBox="0 0 160 100" width="100%" height="100%" aria-hidden="true" style="position:absolute;inset:0;opacity:.5"><g fill="none" stroke="#1E3A66" stroke-width=".7"><rect x="20" y="18" width="52" height="52"/><rect x="46" y="34" width="52" height="52"/><path d="M20 18 46 34M72 18 98 34M20 70 46 86M72 70 98 86" stroke-dasharray="2 3"/><circle cx="126" cy="52" r="18"/><path d="M108 52h36M126 34v36"/></g></svg>
+                  <span style="position:relative;font-family:var(--mono);font-size:10px;color:var(--muted);background:var(--bg);padding:5px 8px;border:1px solid var(--line);border-radius:2px">Figure / video</span>
+                </sc-if>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <a href="#" style="font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;text-decoration:none">{{ p.title }}</a>
+                <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted)">{{ p.authorsPre }}<strong style="color:var(--ink);font-weight:700">Quoc-Anh Bui-Huynh</strong>{{ p.authorsPost }}</p>
+                <p style="margin:0;font-size:13px;color:var(--ink2)"><em style="font-family:var(--serif);font-size:14px">{{ p.venueLine }}</em></p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--muted)" class="no-print">
+                  <sc-for list="{{ p.links }}" as="lk" hint-placeholder-count="3"><a href="{{ lk.href }}" target="_blank" rel="noopener" style="text-decoration:none">{{ lk.label }}</a><span>/</span></sc-for>
+                  <button onClick="{{ p.toggleBib }}" aria-expanded="{{ p.bibOpen }}" style="font-family:var(--sans);font-size:13px;color:var(--accent);background:none;border:none;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px">bibtex</button>
+                </div>
+                <sc-if value="{{ p.bibOpen }}" hint-placeholder-val="{{ false }}">
+                  <pre style="margin:6px 0 0;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--ink2);background:var(--surface2);border:1px solid var(--line);border-radius:3px;padding:16px;overflow-x:auto;white-space:pre-wrap">{{ p.bib }}</pre>
+                </sc-if>
+                <p style="margin:4px 0 0;font-size:13.5px;line-height:1.65;color:var(--muted);text-wrap:pretty">{{ p.summary }}</p>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ pubsHasMore }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ togglePubs }}" aria-expanded="{{ pubsOpen }}" class="no-print" style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--accent);background:none;border:none;padding:12px 0 0;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px">{{ pubsMoreLabel }}</button>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <h2 style="font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px" id="skills">Key Technical Skills</h2>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:grid;grid-template-columns:280px 1fr;gap:36px;padding:24px 28px;border-radius:4px;background:var(--bg-research);align-items:start">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-research)"><span style="width:22px;height:2px;background:var(--c-research)"></span>01 · Research</span>
+                <h3 style="font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.25;margin:0;color:var(--ink);text-wrap:pretty">AI Security &amp; System-Level Reliability</h3>
+              </div>
+              <p style="margin:0;font-size:15px;line-height:1.8;color:var(--ink2);max-width:620px;text-wrap:pretty">I tackle AI security as a <strong style="font-weight:600;color:var(--ink)">system problem</strong>. For <strong style="font-weight:600;color:var(--ink)">3D Gaussian Splatting</strong>, I redesigned the security analysis around the full pipeline, decomposed it stage by stage, and characterized how attacks surface across <strong style="font-weight:600;color:var(--ink)">data, geometry, training, and the final model</strong>. <em>The result is a comprehensive view of where 3DGS systems fail, where those failures become detectable, and how to build toward safer deployment.</em></p>
+            </div>
+            <div style="display:grid;grid-template-columns:280px 1fr;gap:36px;padding:24px 28px;border-radius:4px;background:var(--bg-eng);align-items:start">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-eng)"><span style="width:22px;height:2px;background:var(--c-eng)"></span>02 · Engineering</span>
+                <h3 style="font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.25;margin:0;color:var(--ink);text-wrap:pretty">Large-Scale ML Systems &amp; Experimentation</h3>
+              </div>
+              <p style="margin:0;font-size:15px;line-height:1.8;color:var(--ink2);max-width:620px;text-wrap:pretty">I turn research ideas into large-scale working systems. I decomposed a complex experimental codebase across multiple workstations, integrated a <strong style="font-weight:600;color:var(--ink)">10TB benchmark</strong>, and orchestrated parallel evaluation across <strong style="font-weight:600;color:var(--ink)">10 GPUs</strong>. <em>I focus on making heavy research pipelines scalable, reproducible, and fast enough to iterate on at real research scale.</em></p>
+            </div>
+            <div style="display:grid;grid-template-columns:280px 1fr;gap:36px;padding:24px 28px;border-radius:4px;background:var(--bg-personal);align-items:start">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-personal)"><span style="width:22px;height:2px;background:var(--c-personal)"></span>03 · Personal</span>
+                <h3 style="font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.25;margin:0;color:var(--ink);text-wrap:pretty">Rapid Cross-Domain ML Development</h3>
+              </div>
+              <p style="margin:0;font-size:15px;line-height:1.8;color:var(--ink2);max-width:620px;text-wrap:pretty">I learn new domains quickly and become productive fast. My research has moved from <strong style="font-weight:600;color:var(--ink)">molecular representation learning</strong> to <strong style="font-weight:600;color:var(--ink)">multimodal learning</strong>, <strong style="font-weight:600;color:var(--ink)">AI agents</strong>, and <strong style="font-weight:600;color:var(--ink)">3D vision</strong>, each requiring a different technical stack and way of thinking. <em>I combine fast prototyping, aggressive iteration, and strong execution with a long-term focus on building trustworthy AI systems that can survive real-world deployment.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:20px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">© 2026 Bui Huynh Quoc Anh, Singapore · Last updated Aug. 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1100},&quot;initials&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;QA&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { theme: this.props.startTheme || "light", menuOpen: false, bib: {}, newsOpen: false, pubsOpen: false };
+
+  bibtex(key) {
+    return "@inproceedings{" + key + ",\n  title   = {[Publication title]},\n  author  = {[Last, First] and [Last, First]},\n  booktitle = {[Venue]},\n  year    = {[Year]},\n  url     = {[https://doi.org/10.xxxx/xxxxx]}\n}";
+  }
+  renderVals() {
+    const projects = [
+      { year: "[Year]–present", status: "Ongoing", title: "[Project title one]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [method], [software]", with: "[Collaborator], [Institution]", link1: "Project page →", link2: "Preprint →" },
+      { year: "[Year]–[Year]", status: "Under review", title: "[Project title two]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [method]", with: "[Lab or group], [Institution]", link1: "Project page →", link2: "Code →" },
+      { year: "[Year]", status: "Published", title: "[Project title three]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [dataset]", with: "[Collaborator], [Institution]", link1: "Paper →", link2: "Dataset →" }
+    ];
+    const timeline = [
+      { when: "[Year]–now", what: "[Current role]", where: "[Department], [Institution]" },
+      { when: "[Year]", what: "Visiting researcher", where: "[Host group], [Institution]" },
+      { when: "[Year]", what: "[Degree], [Field]", where: "[Institution]" },
+      { when: "[Year]", what: "[Award or fellowship name]", where: "[Awarding body]" },
+      { when: "[Year]", what: "[Degree], [Field]", where: "[Institution]" }
+    ];
+    const pubs = [
+      { venue: "[Journal or conference]", year: "[Year]", title: "[Publication title one]", authors: "[Author, A.], [Full Name], [Author, C.]" },
+      { venue: "[Journal or conference]", year: "[Year]", title: "[Publication title two]", authors: "[Full Name], [Author, B.]" }
+    ];
+    const newsAll = [
+      { date: "Jun. 2026", kind: "Preprint", pre: "", title: "Poison-3DGS: A Stage-wise Benchmark", post: " is now available on arXiv.", href: "https://arxiv.org/abs/2606.03499", text: "", link: "arXiv →" },
+      { date: "Jun. 2026", kind: "Preprint", pre: "", title: "Mixed-Modality Dual Face-Hair Retrieval", post: " is now available on arXiv.", href: "https://arxiv.org/abs/2606.03470", text: "", link: "arXiv →" },
+      { date: "Mar. 2026", kind: "Move", text: "Joined Temasek Laboratories @ SUTD as a visiting research student, working with Assoc. Prof. Ngai-Man Cheung.", link: "" },
+      { date: "Oct. 2025", kind: "Paper", pre: "", title: "HairCraft: Controllable Hairstyle Transfer", post: " submitted to IEEE MultiMedia.", href: "#", text: "", link: "" },
+      { date: "Sep. 2024", kind: "Paper", text: "One paper accepted at ATC 2024.", link: "" },
+      { date: "Apr. 2024", kind: "Move", text: "Joined MMLAB@UIT, working with Dr. Duc Thanh Ngo.", link: "" },
+      { date: "Jul. 2023", kind: "Paper", text: "One paper accepted at ICCIT 2023.", link: "" },
+      { date: "Oct. 2022", kind: "Move", text: "Joined ISLAB@UIT, working with Dr. Thanh Binh Nguyen.", link: "" },
+      { date: "Sep. 2022", kind: "Milestone", text: "Started my Bachelor’s degree in Information Systems at University of Information Technology, VNU-HCM (UIT).", link: "" }
+    ];
+    const pubsAll = [
+        { title: "Poison-3DGS: A Stage-wise Benchmark", authorsPre: "", authorsPost: ", Thanh Duc Ngo, Xue Geng, Kaixin Xu, Wang Zhe, Xulei Yang, Ngai-Man Cheung", img: "uploads/Screenshot 2026-08-14 at 3.10.20 PM.png", venueLine: "Preprint, Under Review, 2026", links: [{ label: "Paper", href: "https://arxiv.org/abs/2606.03499" }, { label: "Code", href: "#" }, { label: "Project Page", href: "#" }], summary: "We introduce Poison-3DGS, a defender-centric benchmark for systematically studying where attacks become detectable throughout the 3D Gaussian Splatting pipeline. We characterize attack-induced forensic signals across four stages: input images, 3D geometry, training dynamics, and the final Gaussian representation." },
+        { title: "Mixed-Modality Dual Face–Hair Retrieval", authorsPre: "", authorsPost: ", Mai-Tuyen Lam, Dai-Anh-Tuan Nguyen, Thanh Duc Ngo", img: "uploads/Screenshot 2026-08-14 at 3.14.25 PM.png", venueLine: "Preprint, Under Review, 2026", links: [{ label: "Paper", href: "https://arxiv.org/abs/2606.03470" }, { label: "Code", href: "#" }, { label: "Project Page", href: "#" }], summary: "We introduce Dual Face–Hair Retrieval (DFHR), a mixed-modality retrieval task in which a face image specifies the target identity while an image or text reference specifies the desired hairstyle. We further introduce DFHR-Bench, a large-scale benchmark for systematically evaluating identity-preserving hairstyle retrieval across visual and textual queries." },
+        { title: "HairCraft: Controllable Hairstyle Transfer via Instance-Specific Adaptation", authorsPre: "", authorsPost: ", Thanh Duc Ngo", img: "uploads/Screenshot 2026-08-14 at 3.17.29 PM.png", venueLine: "Under Review", links: [{ label: "Paper", href: "#" }, { label: "Project Page", href: "#" }], summary: "A research project on controllable facial image generation, with a focus on hairstyle manipulation while preserving the identity and visual characteristics of the target face." },
+        { title: "Decision Tree-Based Ensemble Method for Bitter Taste Prediction", authorsPre: "", authorsPost: ", Huong Nguyen Thi Ngoc, Thanh Binh Nguyen", img: "uploads/pasted-1786692255944-0.png", venueLine: "IEEE International Conference on Advanced Technologies for Communications (ATC), 2024", links: [{ label: "Paper", href: "https://ieeexplore.ieee.org/document/10908315" }], summary: "We introduce a decision tree-based ensemble framework that combines multiple molecular bitterness predictors to improve robustness across chemically diverse test sets. The approach integrates predictions from EC-ANN, M2V-ANN, and Chemopy-RF to achieve more consistent performance across different molecular domains." },
+        { title: "Artificial Neural Network-Based Approach for Molecular Bitter Prediction", authorsPre: "", authorsPost: ", Trong Hop Do, Thanh Binh Nguyen", img: "uploads/pasted-1786692190317-0.png", venueLine: "ICCIT 2023 · Wiley, 2024", links: [{ label: "Paper", href: "https://arxiv.org/abs/2311.09260" }], summary: "We propose EC-ANN, a neural network-based approach for molecular bitterness prediction using molecular fingerprints derived from SMILES representations. The method aims to improve generalization across chemically diverse evaluation sets for computational taste prediction." }
+      ].map((p, i) => ({
+        ...p,
+        noImg: !p.img,
+        thumbStyle: p.img ? "position:absolute;inset:0;background:url('" + encodeURI(p.img) + "') center/contain no-repeat" : "",
+        bib: this.bibtex("buihuynh" + (2026 - i)),
+        bibOpen: !!this.state.bib[i],
+        toggleBib: () => this.setState(s => ({ bib: { ...s.bib, [i]: !s.bib[i] } }))
+      }));
+    return {
+      theme: this.state.theme,
+      initials: this.props.initials || "QA",
+      showFigures: this.props.showFigures !== false,
+      themeIcon: this.state.theme === "light" ? "☾" : "☀",
+      menuOpen: this.state.menuOpen,
+      toggleTheme: () => this.setState(s => ({ theme: s.theme === "light" ? "dark" : "light" })),
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      projects,
+      projectsShort: projects.slice(0, 2),
+      timeline,
+      pubsShort: pubs,
+      news: this.state.newsOpen ? newsAll : newsAll.slice(0, 4),
+      newsOpen: this.state.newsOpen,
+      newsMoreLabel: this.state.newsOpen ? "Show less" : "Show all " + newsAll.length + " updates",
+      toggleNews: () => this.setState(s => ({ newsOpen: !s.newsOpen })),
+      barronPubs: this.state.pubsOpen ? pubsAll : pubsAll.slice(0, 3),
+
+      pubsOpen: this.state.pubsOpen,
+      pubsHasMore: pubsAll.length > 3,
+      pubsMoreLabel: this.state.pubsOpen ? "Show less" : "Show all publications",
+      togglePubs: () => this.setState(s => ({ pubsOpen: !s.pubsOpen })),
+      projectYears: [
+        { year: "[Y] — now", what: "[Current phase]", note: "[What is underway right now.]", dot: "var(--accent)" },
+        { year: "[Y]", what: "[Paper submitted]", note: "[Venue], under review.", dot: "var(--accent)" },
+        { year: "[Y−1]", what: "[Second study run]", note: "[Sample, site or dataset.]", dot: "var(--bg)" },
+        { year: "[Y−1]", what: "[Dataset released]", note: "[Repository], [licence].", dot: "var(--bg)" },
+        { year: "[Y−2]", what: "[Pilot study]", note: "[What the pilot established.]", dot: "var(--bg)" },
+        { year: "[Y−2]", what: "Project started", note: "[Funding or collaboration that began it.]", dot: "var(--bg)" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
