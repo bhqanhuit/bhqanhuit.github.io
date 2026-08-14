@@ -103,16 +103,17 @@
                 </sc-if>
               </div>
               <div style="display:flex;flex-direction:column;gap:6px">
-                <a href="#" style="font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;text-decoration:none">{{ p.title }}</a>
+                <sc-if value="{{ p.hasTitleLink }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ p.titleHref }}" target="_blank" rel="noopener" style="font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;text-decoration:none">{{ p.title }}</a>
+                </sc-if>
+                <sc-if value="{{ p.noTitleLink }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--ink)">{{ p.title }}</span>
+                </sc-if>
                 <p style="margin:0;font-size:13px;line-height:1.55;color:var(--muted)">{{ p.authorsPre }}<strong style="color:var(--ink);font-weight:700">Quoc-Anh Bui-Huynh</strong>{{ p.authorsPost }}</p>
                 <p style="margin:0;font-size:13px;color:var(--ink2)"><em style="font-family:var(--serif);font-size:14px">{{ p.venueLine }}</em></p>
                 <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--muted)" class="no-print">
-                  <sc-for list="{{ p.links }}" as="lk" hint-placeholder-count="3"><a href="{{ lk.href }}" target="_blank" rel="noopener" style="text-decoration:none">{{ lk.label }}</a><span>/</span></sc-for>
-                  <button onClick="{{ p.toggleBib }}" aria-expanded="{{ p.bibOpen }}" style="font-family:var(--sans);font-size:13px;color:var(--accent);background:none;border:none;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px">bibtex</button>
+                  <sc-for list="{{ p.links }}" as="lk" hint-placeholder-count="3"><a href="{{ lk.href }}" target="_blank" rel="noopener" style="text-decoration:none">{{ lk.label }}</a><span>{{ lk.sep }}</span></sc-for>
                 </div>
-                <sc-if value="{{ p.bibOpen }}" hint-placeholder-val="{{ false }}">
-                  <pre style="margin:6px 0 0;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--ink2);background:var(--surface2);border:1px solid var(--line);border-radius:3px;padding:16px;overflow-x:auto;white-space:pre-wrap">{{ p.bib }}</pre>
-                </sc-if>
                 <p style="margin:4px 0 0;font-size:13.5px;line-height:1.65;color:var(--muted);text-wrap:pretty">{{ p.summary }}</p>
               </div>
             </div>
@@ -162,11 +163,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1100},&quot;initials&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;QA&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 class Component extends DCLogic {
-  state = { theme: this.props.startTheme || "light", menuOpen: false, bib: {}, newsOpen: false, pubsOpen: false };
-
-  bibtex(key) {
-    return "@inproceedings{" + key + ",\n  title   = {[Publication title]},\n  author  = {[Last, First] and [Last, First]},\n  booktitle = {[Venue]},\n  year    = {[Year]},\n  url     = {[https://doi.org/10.xxxx/xxxxx]}\n}";
-  }
+  state = { theme: this.props.startTheme || "light", menuOpen: false, newsOpen: false, pubsOpen: false };
   renderVals() {
     const projects = [
       { year: "[Year]–present", status: "Ongoing", title: "[Project title one]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [method], [software]", with: "[Collaborator], [Institution]", link1: "Project page →", link2: "Preprint →" },
@@ -201,14 +198,20 @@ class Component extends DCLogic {
         { title: "HairCraft: Controllable Hairstyle Transfer via Instance-Specific Adaptation", authorsPre: "", authorsPost: ", Thanh Duc Ngo", img: "uploads/haircraft.png", venueLine: "Under Review", links: [{ label: "Paper", href: "#" }, { label: "Project Page", href: "#" }], summary: "A research project on controllable facial image generation, with a focus on hairstyle manipulation while preserving the identity and visual characteristics of the target face." },
         { title: "Decision Tree-Based Ensemble Method for Bitter Taste Prediction", authorsPre: "", authorsPost: ", Huong Nguyen Thi Ngoc, Thanh Binh Nguyen", img: "uploads/bitter-taste-ensemble-atc2024.png", venueLine: "IEEE International Conference on Advanced Technologies for Communications (ATC), 2024", links: [{ label: "Paper", href: "https://ieeexplore.ieee.org/document/10908315" }], summary: "We introduce a decision tree-based ensemble framework that combines multiple molecular bitterness predictors to improve robustness across chemically diverse test sets. The approach integrates predictions from EC-ANN, M2V-ANN, and Chemopy-RF to achieve more consistent performance across different molecular domains." },
         { title: "Artificial Neural Network-Based Approach for Molecular Bitter Prediction", authorsPre: "", authorsPost: ", Trong Hop Do, Thanh Binh Nguyen", img: "uploads/molecular-bitter-ann-iccit2023.png", venueLine: "ICCIT 2023 · Wiley, 2024", links: [{ label: "Paper", href: "https://arxiv.org/abs/2311.09260" }], summary: "We propose EC-ANN, a neural network-based approach for molecular bitterness prediction using molecular fingerprints derived from SMILES representations. The method aims to improve generalization across chemically diverse evaluation sets for computational taste prediction." }
-      ].map((p, i) => ({
-        ...p,
-        noImg: !p.img,
-        thumbStyle: p.img ? "position:absolute;inset:0;background:url('" + encodeURI(p.img) + "') center/contain no-repeat" : "",
-        bib: this.bibtex("buihuynh" + (2026 - i)),
-        bibOpen: !!this.state.bib[i],
-        toggleBib: () => this.setState(s => ({ bib: { ...s.bib, [i]: !s.bib[i] } }))
-      }));
+      ].map(p => {
+        // Only links with a real destination survive; "#" placeholders are dropped
+        // rather than rendered as dead links.
+        const links = (p.links || []).filter(l => l.href && l.href !== "#");
+        return {
+          ...p,
+          noImg: !p.img,
+          thumbStyle: p.img ? "position:absolute;inset:0;background:url('" + encodeURI(p.img) + "') center/contain no-repeat" : "",
+          links: links.map((l, j) => ({ ...l, sep: j < links.length - 1 ? "/" : "" })),
+          titleHref: links.length ? links[0].href : "",
+          hasTitleLink: links.length > 0,
+          noTitleLink: links.length === 0
+        };
+      });
     return {
       theme: this.state.theme,
       initials: this.props.initials || "QA",
