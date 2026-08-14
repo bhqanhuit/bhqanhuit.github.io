@@ -170,24 +170,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1100},&quot;initials&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;QA&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;showFigures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 class Component extends DCLogic {
-  state = { theme: this.props.startTheme || "light", menuOpen: false, newsOpen: false, pubsOpen: false };
+  state = { theme: this.props.startTheme || "light", newsOpen: false, pubsOpen: false };
   renderVals() {
-    const projects = [
-      { year: "[Year]–present", status: "Ongoing", title: "[Project title one]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [method], [software]", with: "[Collaborator], [Institution]", link1: "Project page →", link2: "Preprint →" },
-      { year: "[Year]–[Year]", status: "Under review", title: "[Project title two]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [method]", with: "[Lab or group], [Institution]", link1: "Project page →", link2: "Code →" },
-      { year: "[Year]", status: "Published", title: "[Project title three]", question: "[The research question this project asks, in one sentence.]", body: "[What you are doing and on what material, in two sentences of plain language. Name the contribution rather than the activity.]", methods: "[Method], [dataset]", with: "[Collaborator], [Institution]", link1: "Paper →", link2: "Dataset →" }
-    ];
-    const timeline = [
-      { when: "[Year]–now", what: "[Current role]", where: "[Department], [Institution]" },
-      { when: "[Year]", what: "Visiting researcher", where: "[Host group], [Institution]" },
-      { when: "[Year]", what: "[Degree], [Field]", where: "[Institution]" },
-      { when: "[Year]", what: "[Award or fellowship name]", where: "[Awarding body]" },
-      { when: "[Year]", what: "[Degree], [Field]", where: "[Institution]" }
-    ];
-    const pubs = [
-      { venue: "[Journal or conference]", year: "[Year]", title: "[Publication title one]", authors: "[Author, A.], [Full Name], [Author, C.]" },
-      { venue: "[Journal or conference]", year: "[Year]", title: "[Publication title two]", authors: "[Full Name], [Author, B.]" }
-    ];
     const newsAll = [
       { date: "Jun. 2026", kind: "Preprint", pre: "", title: "Poison-3DGS: A Stage-wise Benchmark", post: " is now available on arXiv.", href: "https://arxiv.org/abs/2606.03499", text: "", link: "arXiv →" },
       { date: "Jun. 2026", kind: "Preprint", pre: "", title: "Mixed-Modality Dual Face-Hair Retrieval", post: " is now available on arXiv.", href: "https://arxiv.org/abs/2606.03470", text: "", link: "arXiv →" },
@@ -233,16 +217,8 @@ class Component extends DCLogic {
       hasCv: !!CV_URL,
       noCv: !CV_URL,
       theme: this.state.theme,
-      initials: this.props.initials || "QA",
-      showFigures: this.props.showFigures !== false,
       themeIcon: this.state.theme === "light" ? "☾" : "☀",
-      menuOpen: this.state.menuOpen,
       toggleTheme: () => this.setState(s => ({ theme: s.theme === "light" ? "dark" : "light" })),
-      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      projects,
-      projectsShort: projects.slice(0, 2),
-      timeline,
-      pubsShort: pubs,
       news: this.state.newsOpen ? newsAll : newsAll.slice(0, 4),
       newsOpen: this.state.newsOpen,
       newsMoreLabel: this.state.newsOpen ? "Show less" : "Show all " + newsAll.length + " updates",
@@ -253,14 +229,6 @@ class Component extends DCLogic {
       pubsHasMore: pubsAll.length > 3,
       pubsMoreLabel: this.state.pubsOpen ? "Show less" : "Show all publications",
       togglePubs: () => this.setState(s => ({ pubsOpen: !s.pubsOpen })),
-      projectYears: [
-        { year: "[Y] — now", what: "[Current phase]", note: "[What is underway right now.]", dot: "var(--accent)" },
-        { year: "[Y]", what: "[Paper submitted]", note: "[Venue], under review.", dot: "var(--accent)" },
-        { year: "[Y−1]", what: "[Second study run]", note: "[Sample, site or dataset.]", dot: "var(--bg)" },
-        { year: "[Y−1]", what: "[Dataset released]", note: "[Repository], [licence].", dot: "var(--bg)" },
-        { year: "[Y−2]", what: "[Pilot study]", note: "[What the pilot established.]", dot: "var(--bg)" },
-        { year: "[Y−2]", what: "Project started", note: "[Funding or collaboration that began it.]", dot: "var(--bg)" }
-      ]
     };
   }
 }
